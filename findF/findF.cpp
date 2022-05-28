@@ -1,6 +1,3 @@
-// findF.cpp : 定义控制台应用程序的入口点。
-//
-
 #include "stdafx.h"
 #include<stdio.h>
 #include<iostream>
@@ -19,12 +16,15 @@ int main()
 		cin>>num[i];
 		sum[i]=sum[i-1]+num[i];
 	}
-	for(int i=N;i>=F;i--)
+	for (int j = N; j >= F; j--)
 	{
-		if(sum[i]-sum[i-F]>ans)
-			ans=sum[i]-sum[i-F];
+		for (int i = N; i >= j; i--)
+		{
+			if (((double)(sum[i] - sum[i - j])/(double)j) > ans)
+				ans = ((double)(sum[i] - sum[i - j]) / (double)j);
+		}
 	}
-	printf_s("%.3f\n",(double)ans/(double)F);
+	
+	printf_s("%.3f\n",ans);
 	return 0;
 }
-
